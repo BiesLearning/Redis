@@ -107,8 +107,13 @@ public static async Task<T?> GetAsync<T>(this IDistributedCache cache, string ke
 ## 7. Using Redis in Blazor
 
 To use Redis in your Blazor project, follow these steps:
+1. Inject the caching service at the top of your `FetchData.razor` file:
+```csharp
+@page "/fetchdata"
+@inject Microsoft.Extensions.Caching.Distributed.IDistributedCache Cache
+```
 
-1. Create a method in your `FetchData.razor` file that will fetch data from a service and cache it (it will use default expiration). Note that key is changing every minute:
+2. Create a method in your `FetchData.razor` file inside `@code` block that will fetch data from a service and cache it (it will use default expiration). Note that key is changing every minute:
 ```csharp
 private WeatherForecast[]? forecasts;
 private string? loadLocation = "";
@@ -136,7 +141,7 @@ private async Task LoadForecast()
 }
 ```
 
-2. Bind the method to your `FetchData.razor` page:
+3. Bind the method to your `FetchData.razor` page:
 ```razor
 <PageTitle>Weather forecast</PageTitle>
 

@@ -1,4 +1,4 @@
-# Redis Learning Project
+# Redis Basic Setup and Usage
 
 This guide will walk you through using Redis in a Blazor project using C#. Redis is an in-memory data structure store that can be used as a cache and for other data storage and retrieval tasks.
 

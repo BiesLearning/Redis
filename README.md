@@ -40,7 +40,7 @@ After connecting to the Redis command line, you're free to use various commands 
 
 So far Redis should return an empty result for `dbsize` and `scan 0` requests. But it is a great indicator that the Redis is up and running:
 
-![CMD](https://github.com/HordeBies/Redis-Learning/assets/73644073/f6c81d9d-6808-41f5-a932-9b4c5decd2df)
+![image](https://github.com/HordeBies/Redis-Learning/assets/73644073/a37be93e-2e98-49a2-a5ac-61f3ffbf1f37)
 
 ## 4. Blazor Project Setup
 
@@ -48,7 +48,7 @@ After ensuring the Redis server is up and running, let's create a Blazor project
 
 1. Create a new Blazor project in Visual Studio.
 
-![Blazor](https://github.com/HordeBies/Redis-Learning/assets/73644073/8dc8c980-3eeb-491d-8d17-d5d62811d23e)
+![image](https://github.com/HordeBies/Redis-Learning/assets/73644073/081e8f5a-a9a6-4503-bed5-8055a5c07a6a)
 
 ## 5. Configure Blazor Project to Use Redis
 
@@ -63,7 +63,7 @@ In order to use Redis in your Blazor project, you'll need to perform the followi
 ```
 Replace `x.x.x` with the appropriate version numbers, or use NuGet Package Manager to install.
 
-![NuGet](https://github.com/HordeBies/Redis-Learning/assets/73644073/8ce06f37-39a1-444c-8e04-40895dc82d6c)
+![image](https://github.com/HordeBies/Redis-Learning/assets/73644073/816564d9-9895-49d9-8147-c00969310456)
 
 2. Add the Redis connection string to your `appsettings.json`:
 ```json
@@ -188,15 +188,15 @@ else
 Now, when you run your project, you can click to load the weather forecast. It will load from the API the first time, and subsequent clicks will load the data from the Redis cache. 
 Lets see how visiting same page with 3 different browsers(or reloading from same browser) result (first one hits the api and returns the data and caches it, other browsers just use the same cached data): 
 
-![Browsers](https://github.com/HordeBies/Redis-Learning/assets/73644073/4da9a148-a470-4943-a08b-22f8dfb81a11)
+![Screenshot_64](https://github.com/HordeBies/Redis-Learning/assets/73644073/eca7cf4c-336b-48d6-a5d3-2c6dc84922e3)
 
 Lets see how that is stored in redis container. First you connect to redis container shell `docker exec -it Redis sh` then you connect to Redis command line with `redis-cli`. Now use `scan 0` to see your cached data:
 
-![Scan0](https://github.com/HordeBies/Redis-Learning/assets/73644073/aa06e6eb-ff91-4198-910a-f6953db5fe83)
+![Screenshot_62](https://github.com/HordeBies/Redis-Learning/assets/73644073/0c0a8fcc-ac76-4fb3-89f7-cb59fb919893)
 
 (P.S. Cache is only valid for 1 minutes and key is valid for the same minute, so if you cache the data at XX:45 it will be live for 15 seconds then new request will create another cache for the new minute but the old cache will still exist in redis for 45 more seconds which will create unusable cache, therefore you might want to tweak key name and expiration timings to better suit your needs.)
 
-![UnusableCache](https://github.com/HordeBies/Redis-Learning/assets/73644073/d1bf4a37-1a2f-4d4d-a172-676c5c87e691)
+![Screenshot_63](https://github.com/HordeBies/Redis-Learning/assets/73644073/54304bb1-07d4-421c-8562-1d24172db38c)
 
 ## 8. Conclusion
 This concludes the basic setup and usage guide for using Redis in a Blazor project. You've learned how to set up Redis using Docker, integrate Redis with your Blazor project, and use it as a caching mechanism. Feel free to change caching parameters (i.e. cache key, caching duration with sliding and absolute expiration times), explore more advanced features and use cases for Redis as you continue your learning journey. Happy coding!
